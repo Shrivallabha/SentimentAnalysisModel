@@ -55,8 +55,8 @@ git clone https://github.com/tensorflow/serving
 `/path/to/my_model/`
 
 #### Start TensorFlow Serving container and open the REST API port
-`docker run -p 8501:8501 \ <br />
-  --mount type=bind,source=/path/to/my_model/,target=/models/my_model \<br />
-  -e MODEL_NAME=my_model -t tensorflow/serving`
+`docker run -p 8501:8501 \ 
+--mount type=bind,source=/path/to/my_model/,target=/models/my_model 
+-e MODEL_NAME=my_model -t tensorflow/serving`
 
 #### Results => { "predictions": [4.5] }
