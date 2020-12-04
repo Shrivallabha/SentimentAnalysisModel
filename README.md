@@ -39,9 +39,25 @@ The Python code for this app can be found at `streamlit_webapp/app.py`.
 pip3 install streamlit
 pip3 install boto3
 pip3 install pandas
-pip3 install configparser
 ```
 
 > Run `app.py`
 
 Run the WebApp by running `streamlit run app.py`.
+
+### Building Docker
+
+#### Download the TensorFlow Serving Docker image and repo
+docker pull tensorflow/serving
+
+git clone https://github.com/tensorflow/serving
+#### Location of demo models
+`/path/to/my_model/`
+
+#### Start TensorFlow Serving container and open the REST API port
+docker run -t --rm -p 8501:8501 \
+    -v "$TESTDATA/saved_model_half_plus_two_cpu:/models/half_plus_two" \
+    -e MODEL_NAME=half_plus_two \
+    tensorflow/serving &
+
+#### Results => { "predictions": [4.5] }
